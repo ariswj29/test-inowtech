@@ -4,11 +4,13 @@ import classes from "./data/classes.json";
 import students from "./data/students.json";
 import teachers from "./data/teachers.json";
 import { Gender } from "@prisma/client";
+import { genSalt, hash } from "bcrypt";
 
 async function main() {
+  const salt = await genSalt(10);
   for (const user of users) {
     await prisma.user.create({
-      data: user,
+      data: { ...user, password: await hash(user.password, salt) },
     });
   }
   for (const cls of classes) {
