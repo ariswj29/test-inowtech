@@ -3,7 +3,11 @@ import { Request, Response } from "express";
 
 export const getStudent = async (req: Request, res: Response) => {
   try {
-    const students = await prisma.student.findMany();
+    const students = await prisma.student.findMany({
+      include: {
+        class: true,
+      },
+    });
 
     res
       .status(200)
@@ -27,17 +31,19 @@ export const createStudent = async (req: Request, res: Response) => {
     classId,
   } = req.body;
 
+  console.log(req.body, "req.body");
+
   try {
     const student = await prisma.student.create({
       data: {
         name,
         nisn,
-        dateBirth,
+        dateBirth: new Date(dateBirth),
         placeBirth,
         address,
         noPhone,
         gender,
-        classId: parseInt(classId),
+        classId: Number(classId),
       },
     });
 
@@ -96,12 +102,12 @@ export const updateStudent = async (req: Request, res: Response) => {
       data: {
         name,
         nisn,
-        dateBirth,
+        dateBirth: new Date(dateBirth),
         placeBirth,
         address,
         noPhone,
         gender,
-        classId: parseInt(classId),
+        classId: Number(classId),
       },
     });
 
@@ -125,7 +131,9 @@ export const deleteStudent = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(200).json({ message: "Delete student successfully" });
+    res
+      .status(200)
+      .json({ status: "success", message: "Delete student successfully" });
   } catch (err) {
     const errorMessage =
       err instanceof Error ? err.message : "An unknown error occurred";

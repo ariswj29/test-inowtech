@@ -95,7 +95,9 @@ export const deleteClass = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(200).json({ message: "Delete class successfully" });
+    res
+      .status(200)
+      .json({ status: "success", message: "Delete class successfully" });
   } catch (err) {
     const errorMessage =
       err instanceof Error ? err.message : "An unknown error occurred";
