@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Budi Santoso",
+    "nuptk": "1584762892",
+    "dateBirth": "1980-04-07",
+    "placeBirth": "Surabaya",
+    "gender": "MALE",
+    "address": "Jl. Jendral Sudirman No. 3",
+    "noPhone": "081938564123",
+    "classId": 1
+  },
+  {
+    "name": "Siti Rahayu",
+    "nuptk": "1584462831",
+    "dateBirth": "1980-02-03",
+    "placeBirth": "Bandung",
+    "gender": "FEMALE",
+    "address": "Jl. Dewi Sartika No. 91",
+    "noPhone": "081938364197",
+    "classId": 2
+  },
+  {
+    "name": "Yuli Susanti",
+    "nuptk": "1574792837",
+    "dateBirth": "1985-09-12",
+    "placeBirth": "Semarang",
+    "gender": "FEMALE",
+    "address": "Jl. Asia Afrika No. 3",
+    "noPhone": "081958764137",
+    "classId": 3
+  }
+]

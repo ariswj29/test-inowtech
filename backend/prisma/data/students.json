@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Rizal Fauzi",
+    "nisn": "1234567890",
+    "dateBirth": "2003-01-01",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Jendral Sudirman No. 123",
+    "noPhone": "081234567890",
+    "classId": 1
+  },
+  {
+    "name": "Ahmad Oktaviandi",
+    "nisn": "1232567890",
+    "dateBirth": "2003-02-01",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Jendral Sudirman No. 113",
+    "noPhone": "081234268811",
+    "classId": 1
+  },
+  {
+    "name": "Putri Rahayu",
+    "nisn": "1374563809",
+    "dateBirth": "2003-01-03",
+    "placeBirth": "Bandung",
+    "gender": "FEMALE",
+    "address": "Jl. Jendral Sudirman No. 421",
+    "noPhone": "081234567093",
+    "classId": 1
+  },
+  {
+    "name": "Siti Rahayu",
+    "nisn": "1945763123",
+    "dateBirth": "2003-04-02",
+    "placeBirth": "Semarang",
+    "gender": "FEMALE",
+    "address": "Jl. Asia Afrika No. 3",
+    "noPhone": "081234557492",
+    "classId": 1
+  },
+  {
+    "name": "Rizki Ridho",
+    "nisn": "1734367890",
+    "dateBirth": "2003-09-12",
+    "placeBirth": "Surabaya",
+    "gender": "MALE",
+    "address": "Jl. Budi Utomo No. 1",
+    "noPhone": "081237863892",
+    "classId": 1
+  },
+  {
+    "name": "Abdan Abdillah",
+    "nisn": "1377567832",
+    "dateBirth": "2002-01-11",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Jendral Sudirman No. 3",
+    "noPhone": "081234567123",
+    "classId": 2
+  },
+  {
+    "name": "Fauzi Utomo",
+    "nisn": "1345362809",
+    "dateBirth": "2002-03-12",
+    "placeBirth": "Tangerang",
+    "gender": "MALE",
+    "address": "Jl. Pahlawan No. 9",
+    "noPhone": "081234562121",
+    "classId": 2
+  },
+  {
+    "name": "Rahmat Hidayat",
+    "nisn": "1334567492",
+    "dateBirth": "2002-01-06",
+    "placeBirth": "Solo",
+    "gender": "MALE",
+    "address": "Jl. Kebon Jeruk No. 1",
+    "noPhone": "081132561891",
+    "classId": 2
+  },
+  {
+    "name": "Amanda Olivia",
+    "nisn": "1864567494",
+    "dateBirth": "2002-11-06",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Menteng No. 12",
+    "noPhone": "089835631912",
+    "classId": 2
+  },
+  {
+    "name": "Marsha Putri",
+    "nisn": "1836567543",
+    "dateBirth": "2001-09-07",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Patal Senayan No. 12",
+    "noPhone": "08446456321",
+    "classId": 3
+  },
+  {
+    "name": "Rizki Ramadhan",
+    "nisn": "1834367392",
+    "dateBirth": "2001-06-02",
+    "placeBirth": "Bandung",
+    "gender": "MALE",
+    "address": "Jl. Asia Afrika No. 19",
+    "noPhone": "08184362111",
+    "classId": 3
+  },
+  {
+    "name": "Zaidan Putra",
+    "nisn": "1837367514",
+    "dateBirth": "2001-03-04",
+    "placeBirth": "Jakarta",
+    "gender": "MALE",
+    "address": "Jl. Jendral Sudirman No. 42",
+    "noPhone": "089235537999",
+    "classId": 3
+  },
+  {
+    "name": "Ibnu Dzaky",
+    "nisn": "1884368397",
+    "dateBirth": "2001-04-04",
+    "placeBirth": "Semarang",
+    "gender": "MALE",
+    "address": "Jl. Asia Afrika No. 15",
+    "noPhone": "087253507797",
+    "classId": 3
+  }
+]

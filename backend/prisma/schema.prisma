@@ -8,13 +8,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Gender {
+  MALE
+  FEMALE
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String?
   password  String
@@ -26,8 +31,9 @@ model User {
 }
 
 model Class {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
+  description String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
@@ -39,10 +45,15 @@ model Class {
 }
 
 model Student {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
-  email     String
-  classId   String
+  nisn      String   @unique
+  dateBirth DateTime 
+  placeBirth String
+  address   String
+  noPhone   String
+  gender    Gender
+  classId   Int
   class     Class    @relation(fields: [classId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -52,10 +63,15 @@ model Student {
 }
 
 model Teacher {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   name      String
-  email     String
-  classId   String
+  nuptk     String   @unique
+  dateBirth DateTime
+  placeBirth String
+  address   String
+  noPhone   String
+  gender    Gender
+  classId   Int
   class     Class    @relation(fields: [classId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
