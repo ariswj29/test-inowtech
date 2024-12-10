@@ -105,3 +105,25 @@ export async function login(req: Request, res: Response) {
     res.status(400).json({ error: "An unexpected error occurred" });
   }
 }
+
+export async function dashboard(req: Request, res: Response) {
+  try {
+    const classes = await prisma.class.count();
+
+    const students = await prisma.student.count();
+
+    const teachers = await prisma.teacher.count();
+
+    res.status(200).json({
+      status: "success",
+      message: "Welcome to the dashboard",
+      data: {
+        classes,
+        students,
+        teachers,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({ error: "An unexpected error occurred" });
+  }
+}

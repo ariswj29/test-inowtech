@@ -18,6 +18,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .active {
@@ -28,4 +32,8 @@ body {
 .nav-link:hover {
   font-weight: bold;
   border-bottom: 1px solid black;
+}
+
+#__next {
+  height: 100%;
 }

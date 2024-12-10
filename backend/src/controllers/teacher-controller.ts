@@ -3,15 +3,32 @@ import { Request, Response } from "express";
 
 export const getTeacher = async (req: Request, res: Response) => {
   try {
+    const page = parseInt(req.query.page as string, 10) || 1;
+    const limit = parseInt(req.query.limit as string, 10) || 8;
+
+    const skip = (page - 1) * limit;
+
     const teachers = await prisma.teacher.findMany({
       include: {
         class: true,
       },
+      skip,
+      take: limit ? Number(limit) : 8,
     });
 
-    res
-      .status(200)
-      .json({ message: "Get data teachers successfully", data: teachers });
+    const totalTeachers = await prisma.teacher.count();
+    const totalPages = Math.ceil(totalTeachers / limit);
+
+    res.status(200).json({
+      message: "Get data teachers successfully",
+      data: teachers,
+      meta: {
+        totalItems: totalTeachers,
+        totalPages,
+        currentPage: page,
+        pageSize: limit,
+      },
+    });
   } catch (err) {
     const errorMessage =
       err instanceof Error ? err.message : "An unknown error occurred";

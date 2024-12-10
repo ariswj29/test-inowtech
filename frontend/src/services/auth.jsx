@@ -17,6 +17,17 @@ export async function login(data) {
   return res.data;
 }
 
+export async function dashboard() {
+  const url = base_url_api + "/dashboard";
+  const res = await axios.get(url, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+
+  return res.data;
+}
+
 export async function logout() {
   Cookies.remove("token");
   Cookies.remove("userId");

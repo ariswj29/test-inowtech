@@ -15,7 +15,10 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "School Management",
+  title: {
+    template: "%s | School Management",
+    default: "School Management",
+  },
   description: "School Management by Aris Wildan Jannatan",
 };
 
@@ -25,9 +28,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <div className="flex flex-col">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

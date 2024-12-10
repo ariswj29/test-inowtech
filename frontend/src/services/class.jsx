@@ -4,9 +4,12 @@ import { getCookies } from "@/helpers/cookies";
 const base_url_api = process.env.NEXT_PUBLIC_BASE_API_URL;
 const { token: authToken } = getCookies();
 
-export async function getClass() {
+export async function getClass(page) {
   const url = base_url_api + "/classes";
   const res = await axios.get(url, {
+    params: {
+      page,
+    },
     headers: {
       Authorization: "Bearer " + authToken,
     },

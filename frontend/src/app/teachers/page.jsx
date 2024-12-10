@@ -5,19 +5,23 @@ import ConfirmModal from "@/components/ConfirmModal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { formattedDate } from "@/helpers/formattedDate";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function TeacherPage() {
   const [teacher, setTeacher] = useState([]);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState(0);
   const [confirmationModal, setConfirmationModal] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getTeacher();
+        const res = await getTeacher(page);
         setTeacher(res.data);
+        setTotalPages(res.meta.totalPages);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -25,10 +29,22 @@ export default function TeacherPage() {
     };
 
     fetchData();
-  }, []);
+  }, [page]);
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container max-w-screen-xl mx-auto p-4">
       <div className="flex justify-between items-center">
         <h1 className="text-xl py-4">Data Teacher</h1>
         <Link href="/teachers/add">
@@ -66,7 +82,9 @@ export default function TeacherPage() {
           ) : (
             teacher?.map((item, index) => (
               <tr key={item.id}>
-                <td className="border px-4 py-2">{index + 1}</td>
+                <td className="border px-4 py-2">
+                  {page === 1 ? index + 1 : index + 1 + (page - 1) * 8}
+                </td>
                 <td className="border px-4 py-2">{item.name}</td>
                 <td className="border px-4 py-2">{item.nuptk}</td>
                 <td className="border px-4 py-2">{item.class.name}</td>
@@ -78,7 +96,7 @@ export default function TeacherPage() {
                 <td className="border px-4 py-2">
                   <Link href={`/teachers/${item.id}`}>
                     <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded">
-                      Edit Teacher
+                      <FaEdit />
                     </button>
                   </Link>
                   <button
@@ -88,7 +106,7 @@ export default function TeacherPage() {
                     }}
                     className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded ml-2"
                   >
-                    Delete Teacher
+                    <FaTrash />
                   </button>
                 </td>
               </tr>
@@ -96,6 +114,24 @@ export default function TeacherPage() {
           )}
         </tbody>
       </table>
+
+      <div className="mt-4 flex justify-center gap-4">
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded disabled:bg-slate-500"
+          onClick={handlePrevPage}
+          disabled={page === 1}
+        >
+          Prev
+        </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ml-2 disabled:bg-slate-500"
+          onClick={handleNextPage}
+          disabled={page === totalPages}
+        >
+          Next
+        </button>
+      </div>
+
       {confirmationModal && (
         <ConfirmModal
           id={id}

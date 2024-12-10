@@ -8,10 +8,9 @@ import { logout } from "@/services/auth";
 import { getCookies } from "@/helpers/cookies";
 
 const navbars = [
-  { id: 1, title: "Home", link: "/" },
-  { id: 2, title: "Classes", link: "/classes" },
-  { id: 3, title: "Students", link: "/students" },
-  { id: 4, title: "Teachers", link: "/teachers" },
+  { id: 1, title: "Classes", link: "/classes" },
+  { id: 2, title: "Students", link: "/students" },
+  { id: 3, title: "Teachers", link: "/teachers" },
 ];
 
 export default function Navbar() {
@@ -32,7 +31,10 @@ export default function Navbar() {
     <header className="grid md:grid-cols-3 grid-cols-2 md:px-40 bg-white px-4 items-center border-b-2  sticky top-0 z-50">
       <div className="md:col-span-2 sm:col-span-1 py-2">
         <Link href="/">
-          <Image src="/poolapack.png" alt="RizzCorps" width={150} height={25} />
+          <div className="flex items-center">
+            <Image src="/logo.jpg" alt="school" width={50} height={25} />
+            <label className="text-xl font-bold ml-2">School Management</label>
+          </div>
         </Link>
       </div>
       <div className="md:hidden md:col-span-1 sm:col-span-1 py-6 justify-self-end">
@@ -57,10 +59,23 @@ export default function Navbar() {
       >
         <nav>
           <ul className="grid md:grid-cols-5 gap-4 items-center">
+            {isLogin ? (
+              <li className="text-center">
+                <Link href="/" className="nav-link">
+                  Dashboard
+                </Link>
+              </li>
+            ) : (
+              <li className="text-center">
+                <Link href="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+            )}
             {navbars.map((navbar) => (
               <li key={navbar.id} className="text-center">
                 <Link
-                  href={navbar.link}
+                  href={isLogin ? navbar.link : "/login"}
                   className={pathname === navbar.link ? "active" : "nav-link"}
                 >
                   {navbar.title}
