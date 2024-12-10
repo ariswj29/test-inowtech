@@ -65,7 +65,7 @@ const FormStudent = () => {
 
   return (
     <form onSubmit={handleSubmit(formSubmit)}>
-      <div className="container mx-auto px-4 h-screen py-16">
+      <div className="container max-w-screen-xl mx-auto px-4 h-screen py-8">
         {showMessage === true ? (
           <ShowMessage
             name={
