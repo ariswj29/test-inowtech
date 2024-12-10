@@ -57,6 +57,12 @@ export default function StudentPage() {
                 Loading...
               </td>
             </tr>
+          ) : student.length === 0 ? (
+            <tr>
+              <td colSpan={8} className="text-center">
+                No data
+              </td>
+            </tr>
           ) : (
             student?.map((item, index) => (
               <tr key={item.id}>

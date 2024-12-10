@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { logout } from "@/services/auth";
+import { getCookies } from "@/helpers/cookies";
 
 const navbars = [
   { id: 1, title: "Home", link: "/" },
@@ -14,8 +16,17 @@ const navbars = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const pathname = usePathname();
+
+  useEffect(() => {
+    const cookies = getCookies();
+    const token = cookies.token;
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
 
   return (
     <header className="grid md:grid-cols-3 grid-cols-2 md:px-40 bg-white px-4 items-center border-b-2  sticky top-0 z-50">
@@ -56,6 +67,29 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+            {isLogin ? (
+              <li className="text-center">
+                <Link
+                  href="/"
+                  className="nav-link"
+                  onClick={() => {
+                    async function deleteSession() {
+                      await logout();
+                      window.location.href = "/";
+                    }
+                    deleteSession();
+                  }}
+                >
+                  Logout
+                </Link>
+              </li>
+            ) : (
+              <li className="text-center">
+                <Link href="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

@@ -25,7 +25,11 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/students/page.jsx",
-    "src/app/students/[id]/page.jsx"
+    "src/app/students/[id]/page.jsx",
+    "src/utils/login-schema.js",
+    "src/utils/register-schema.js",
+    "src/app/login/page.jsx",
+    "src/app/register/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

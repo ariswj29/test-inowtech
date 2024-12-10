@@ -52,6 +52,12 @@ export default function ClassPage() {
                 Loading...
               </td>
             </tr>
+          ) : classes.length === 0 ? (
+            <tr>
+              <td colSpan={4} className="text-center">
+                No data
+              </td>
+            </tr>
           ) : (
             classes?.map((item, index) => (
               <tr key={item.id}>
