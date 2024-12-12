@@ -1,14 +1,13 @@
 "use client";
 
-import { getStudent } from "../../services/student";
 import ConfirmModal from "../../components/ConfirmModal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { formattedDate } from "../../helpers/formattedDate";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { getParent } from "../../services/parent";
 
-export default function StudentPage() {
-  const [student, setStudent] = useState([]);
+export default function ClassPage() {
+  const [parents, setParents] = useState([]);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState(0);
   const [confirmationModal, setConfirmationModal] = useState(false);
@@ -19,8 +18,8 @@ export default function StudentPage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await getStudent(page);
-        setStudent(res.data);
+        const res = await getParent(page);
+        setParents(res.data);
         setTotalPages(res.meta.totalPages);
         setLoading(false);
       } catch (error) {
@@ -46,55 +45,47 @@ export default function StudentPage() {
   return (
     <div className="container max-w-screen-xl mx-auto p-4">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl py-4">Data Student</h1>
-        <Link href="/students/add">
+        <h1 className="text-xl py-4">Data Parent</h1>
+        <Link href="/parents/add">
           <span className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-            Tambah Student
+            Add Parent
           </span>
         </Link>
       </div>
       <table className="table-auto w-full">
         <thead>
           <tr className="">
-            <th className="border px-4 py-2">No</th>
+            <th className="border px-4 py-2 w-10">No</th>
             <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">NISN</th>
-            <th className="border px-4 py-2">Class</th>
-            <th className="border px-4 py-2">Place, Birth Date</th>
+            <th className="border px-4 py-2">No Phone</th>
             <th className="border px-4 py-2">Address</th>
-            <th className="border px-4 py-2">Parents</th>
-            <th className="border px-4 py-2">Aksi</th>
+            <th className="border px-4 py-2 w-40">Aksi</th>
           </tr>
         </thead>
         <tbody>
           {loading ? (
             <tr>
-              <td colSpan={8} className="text-center">
+              <td colSpan={4} className="text-center">
                 Loading...
               </td>
             </tr>
-          ) : student.length === 0 ? (
+          ) : parents.length === 0 ? (
             <tr>
-              <td colSpan={8} className="text-center">
+              <td colSpan={4} className="text-center">
                 No data
               </td>
             </tr>
           ) : (
-            student?.map((item, index) => (
+            parents?.map((item, index) => (
               <tr key={item.id}>
                 <td className="border px-4 py-2">
                   {page === 1 ? index + 1 : index + 1 + (page - 1) * 8}
                 </td>
                 <td className="border px-4 py-2">{item.name}</td>
-                <td className="border px-4 py-2">{item.nisn}</td>
-                <td className="border px-4 py-2">{item.class.name}</td>
-                <td className="border px-4 py-2">
-                  {item.placeBirth + ", " + formattedDate(item.dateBirth)}
-                </td>
+                <td className="border px-4 py-2">{item.noPhone}</td>
                 <td className="border px-4 py-2">{item.address}</td>
-                <td className="border px-4 py-2">{item.parent.name}</td>
                 <td className="border px-4 py-2">
-                  <Link href={`/students/${item.id}`}>
+                  <Link href={`/parents/${item.id}`}>
                     <button className="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded">
                       <FaEdit />
                     </button>
@@ -136,7 +127,7 @@ export default function StudentPage() {
         <ConfirmModal
           id={id}
           setModal={setConfirmationModal}
-          title="Delete student"
+          title="Delete parent"
         />
       )}
     </div>

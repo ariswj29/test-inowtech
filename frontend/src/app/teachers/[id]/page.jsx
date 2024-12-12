@@ -7,9 +7,9 @@ import {
   createTeacher,
   getTeacherById,
   updateTeacher,
-} from "@/services/teacher";
-import { getClass } from "@/services/class";
-import { ShowMessage } from "@/components/ShowMessage";
+} from "../../../services/teacher";
+import { getClass } from "../../../services/class";
+import { ShowMessage } from "../../../components/ShowMessage";
 
 const FormTeacher = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -35,6 +35,7 @@ const FormTeacher = () => {
 
     const fetchClasses = async () => {
       const response = await getClass();
+      // response.data = response.data.filter((item) => item.status === "ACTIVE");
       setClasses(response.data);
     };
 

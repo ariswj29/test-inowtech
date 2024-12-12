@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { getCookies } from "@/helpers/cookies";
+import { getCookies } from "../helpers/cookies";
 import { FaBuilding, FaUser } from "react-icons/fa";
 import { BsFillPersonVcardFill } from "react-icons/bs";
-import { dashboard } from "@/services/auth";
+import { dashboard } from "../services/auth";
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState(false);

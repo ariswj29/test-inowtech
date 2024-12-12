@@ -4,8 +4,8 @@ import { getCookies } from "../helpers/cookies";
 const base_url_api = process.env.NEXT_PUBLIC_BASE_API_URL;
 const { token: authToken } = getCookies();
 
-export async function getTeacher(page) {
-  const url = base_url_api + "/teachers";
+export async function getParent(page) {
+  const url = base_url_api + "/parents";
   const res = await axios.get(url, {
     params: {
       page,
@@ -17,8 +17,8 @@ export async function getTeacher(page) {
   return res.data;
 }
 
-export async function createTeacher(data) {
-  const url = base_url_api + "/teachers";
+export async function createParent(data) {
+  const url = base_url_api + "/parents";
   const res = await axios.post(url, data, {
     headers: {
       Authorization: "Bearer " + authToken,
@@ -28,8 +28,8 @@ export async function createTeacher(data) {
   return res.data;
 }
 
-export async function getTeacherById(id) {
-  const url = base_url_api + "/teachers/" + id;
+export async function getParentById(id) {
+  const url = base_url_api + "/parents/" + id;
   const res = await axios.get(url, {
     headers: {
       Authorization: "Bearer " + authToken,
@@ -39,8 +39,8 @@ export async function getTeacherById(id) {
   return res.data;
 }
 
-export async function updateTeacher(id, data) {
-  const url = base_url_api + "/teachers/" + id;
+export async function updateParent(id, data) {
+  const url = base_url_api + "/parents/" + id;
   const res = await axios.put(url, data, {
     headers: {
       Authorization: "Bearer " + authToken,
@@ -50,8 +50,8 @@ export async function updateTeacher(id, data) {
   return res.data;
 }
 
-export async function deleteTeacher(id) {
-  const url = base_url_api + "/teachers/" + id;
+export async function deleteParent(id) {
+  const url = base_url_api + "/parents/" + id;
   const res = await axios.delete(url, {
     headers: {
       Authorization: "Bearer " + authToken,

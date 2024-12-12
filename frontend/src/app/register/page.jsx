@@ -1,8 +1,8 @@
 "use client";
 
-import { registerField } from "@/services/auth";
-import { ShowMessage } from "@/components/ShowMessage";
-import { registerSchema } from "@/utils/register-schema";
+import { registerField } from "../../services/auth";
+import { ShowMessage } from "../../components/ShowMessage";
+import { registerSchema } from "../../utils/register-schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

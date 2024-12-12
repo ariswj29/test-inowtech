@@ -11,6 +11,7 @@ export const getStudent = async (req: Request, res: Response) => {
     const students = await prisma.student.findMany({
       include: {
         class: true,
+        parent: true,
       },
       skip,
       take: limit ? Number(limit) : 8,
@@ -45,6 +46,7 @@ export const createStudent = async (req: Request, res: Response) => {
     address,
     noPhone,
     gender,
+    parentId,
     classId,
   } = req.body;
 
@@ -59,7 +61,8 @@ export const createStudent = async (req: Request, res: Response) => {
         placeBirth,
         address,
         noPhone,
-        gender,
+        gender: "MALE",
+        parentId: Number(parentId),
         classId: Number(classId),
       },
     });
@@ -109,6 +112,7 @@ export const updateStudent = async (req: Request, res: Response) => {
     noPhone,
     gender,
     classId,
+    parentId,
   } = req.body;
 
   try {
@@ -123,7 +127,8 @@ export const updateStudent = async (req: Request, res: Response) => {
         placeBirth,
         address,
         noPhone,
-        gender,
+        gender: "MALE",
+        parentId: Number(parentId),
         classId: Number(classId),
       },
     });

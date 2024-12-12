@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { deleteStudent } from "@/services/student";
-import { deleteClass } from "@/services/class";
-import { deleteTeacher } from "@/services/teacher";
+import { deleteStudent } from "../services/student";
+import { deleteClass } from "../services/class";
+import { deleteTeacher } from "../services/teacher";
+import { deleteParent } from "../services/parent";
 
 export default function ConfirmModal(props) {
   const [toastVisible, setToastVisible] = useState(false);
@@ -61,6 +62,24 @@ export default function ConfirmModal(props) {
     }
   };
 
+  const handleDeleteParent = async () => {
+    try {
+      const response = await deleteParent(Number(props.id));
+
+      const { status } = response;
+
+      if (status == "success") {
+        showToast("Success delete parent");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        setToastVisible(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const showToast = (message) => {
     setToastMessage(message);
     setToastVisible(true);
@@ -92,6 +111,8 @@ export default function ConfirmModal(props) {
                 handleDeleteClass();
               } else if (props.title === "Delete teacher") {
                 handleDeleteTeacher();
+              } else if (props.title === "Delete parent") {
+                handleDeleteParent();
               }
             }}
           >

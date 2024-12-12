@@ -7,9 +7,10 @@ import {
   createStudent,
   getStudentById,
   updateStudent,
-} from "@/services/student";
-import { getClass } from "@/services/class";
-import { ShowMessage } from "@/components/ShowMessage";
+} from "../../../services/student";
+import { getClass } from "../../../services/class";
+import { ShowMessage } from "../../../components/ShowMessage";
+import { getParent } from "../../../services/parent";
 
 const FormStudent = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -24,6 +25,7 @@ const FormStudent = () => {
   });
   const [showMessage, setShowMessage] = useState(false);
   const [classes, setClasses] = useState([]);
+  const [parents, setParents] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,13 @@ const FormStudent = () => {
       setClasses(response.data);
     };
 
+    const fetchParents = async () => {
+      const response = await getParent();
+      console.log(response, "response parents");
+      setParents(response.data);
+    };
+
+    fetchParents();
     fetchClasses();
     fetchData();
   }, [studentId]);
@@ -101,6 +110,21 @@ const FormStudent = () => {
             />
           </div>
 
+          <label className="parentId">Parent</label>
+          <div className="">
+            <select className="w-full border p-2" {...register("parentId")}>
+              <option value="0" disabled>
+                Choose Parent
+              </option>
+              {parents &&
+                parents.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+
           <label className="label">Class</label>
           <div className="">
             <select className="w-full border p-2" {...register("classId")}>
@@ -128,17 +152,6 @@ const FormStudent = () => {
               {...register("dateBirth")}
               type="date"
             />
-          </div>
-
-          <label className="label">Gender</label>
-          <div className="">
-            <select className="w-full border p-2" {...register("gender")}>
-              <option value="0" disabled>
-                Choose Gender
-              </option>
-              <option value="MALE">Male</option>
-              <option value="FEMALE">Female</option>
-            </select>
           </div>
 
           <label className="label">Address</label>

@@ -1,10 +1,10 @@
 "use client";
 
-import { getTeacher } from "@/services/teacher";
-import ConfirmModal from "@/components/ConfirmModal";
+import { getTeacher } from "../../services/teacher";
+import ConfirmModal from "../../components/ConfirmModal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { formattedDate } from "@/helpers/formattedDate";
+import { formattedDate } from "../../helpers/formattedDate";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 export default function TeacherPage() {

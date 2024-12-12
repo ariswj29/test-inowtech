@@ -1,12 +1,12 @@
 "use client";
 
-import { loginSchema } from "@/utils/login-schema";
+import { loginSchema } from "../../utils/login-schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { login } from "@/services/auth";
+import { login } from "../../services/auth";
 import Cookies from "js-cookie";
-import { ShowMessage } from "@/components/ShowMessage";
+import { ShowMessage } from "../../components/ShowMessage";
 import Link from "next/link";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 

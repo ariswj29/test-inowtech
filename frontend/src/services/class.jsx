@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookies } from "@/helpers/cookies";
+import { getCookies } from "../helpers/cookies";
 
 const base_url_api = process.env.NEXT_PUBLIC_BASE_API_URL;
 const { token: authToken } = getCookies();

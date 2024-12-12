@@ -1,7 +1,7 @@
 "use client";
 
-import { getClass } from "@/services/class";
-import ConfirmModal from "@/components/ConfirmModal";
+import { getClass } from "../../services/class";
+import ConfirmModal from "../../components/ConfirmModal";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";

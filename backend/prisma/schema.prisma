@@ -55,6 +55,8 @@ model Student {
   gender    Gender
   classId   Int
   class     Class    @relation(fields: [classId], references: [id])
+  parentId  Int
+  parent    Parent   @relation(fields: [parentId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
@@ -78,4 +80,16 @@ model Teacher {
   deletedAt DateTime?
 
   @@map("teachers")
+}
+
+model Parent {
+  id Int @id @default(autoincrement())
+  name String
+  noPhone String
+  address String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Student Student[]
+  @@map("parents")
 }
